@@ -1,0 +1,42 @@
+<div class="container">
+    <h1 mat-dialog-title>Add Customer</h1>
+    <div mat-dialog-content>
+        <form (ngSubmit)="addCustomer()">
+            <mat-form-field class="input-full-width" appearance="fill">
+                <input matInput type="text" placeholder="Name"
+                    [(ngModel)] = "customer.name" name="name">
+            </mat-form-field>
+        <br>
+            <mat-form-field class="input-full-width" appearance="fill">
+                <input matInput type="text" placeholder="Surname"
+                    [(ngModel)] = "customer.surname" name="surname">
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="input-full-width" appearance="fill">
+                <input matInput type="date" placeholder="Birdth Date"
+                [(ngModel)] = "customer.birthDate" name="birthDate"/>
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="input-full-width" appearance="fill">
+                <input matInput type="tel" placeholder="Phone Number"
+                    [(ngModel)] = "customer.telNumber" name="telNumber"/>
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="input-full-width" appearance="fill">
+                <input matInput type="email" placeholder="Email"
+                    [(ngModel)] = "customer.email" name="email"/>
+            </mat-form-field>
+            <br>
+            <button mat-raised-button type="submit" color="primary">Submit</button>
+    </form>
+    <div *ngIf="errorMsg">
+        <div class="errorText" [innerHTML]="errorMsg"></div>
+      </div>
+    </div>
+    <div mat-dialog-actions>
+    <button mat-button (click)="close()">Close</button>
+    </div>
+</div>
