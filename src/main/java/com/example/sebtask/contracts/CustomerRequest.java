@@ -1,15 +1,15 @@
 package com.example.sebtask.contracts;
 
+import com.example.sebtask.annotations.UniqueEmail;
+import com.example.sebtask.annotations.UniqueTelNumber;
+import com.example.sebtask.annotations.ValidDate;
 import com.example.sebtask.models.Customer;
 import com.example.sebtask.services.CustomerService;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -18,22 +18,28 @@ import java.text.SimpleDateFormat;
 @NoArgsConstructor
 public class CustomerRequest {
 
-    @NotBlank(message = "Name not provided")
+   // @NotBlank(message = "Name not provided")
+    @Size(min  = 3, message = "Incorrect name")
+    @Size(max = 30, message = "Incorrect name")
     private String name;
 
-    @NotBlank(message = "Surname not provided")
+    //@NotBlank(message = "Surname not provided")
+    @Size(min  = 3, message = "Incorrect surname")
+    @Size(max = 30, message = "Incorrect surname")
     private String surname;
 
-    @NotNull(message = "Birth Date not provided")
-    @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$", message = "Date format is incorrect. Must be \"yyyy-mm-dd\"")
+    @NotNull(message = "Birth Date is incorrect. Must be \"yyyy-mm-dd\"")
+    @ValidDate(message = "Birth Date is incorrect. Must be \"yyyy-mm-dd\"")
     private String birthDate;
 
     @NotBlank(message = "Phone number not provided")
     @Pattern(regexp="^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$", message = "Phone Number is incorrect")
+    @UniqueTelNumber(message = "Phone number is already in use")
     private String telNumber;
 
     @NotBlank(message = "Email not provided")
     @Email(message = "Email format is not valid")
+    @UniqueEmail(message = "Email is already in use")
     private String email;
 
     public Customer getCustomer() {

@@ -38,7 +38,7 @@ class CustomerControllerTest {
 
     @Test
     public void customerController_RequestAddCustomerWithInvalidName_ReturnsWrongNameMessage() throws Exception {
-        String expectedResponse = "{\"name\":\"Name not provided\"}";
+        String expectedResponse = "{\"name\":\"Incorrect name\"}";
         String request = "{" +
                 "    \"name\": \"\"," +
                 "    \"surname\": \"Surname\"," +
@@ -46,14 +46,14 @@ class CustomerControllerTest {
                 "    \"telNumber\": \"+37016577748\"," +
                 "    \"email\": \"name@gmail.com\"" +
                 "}";
-        this.mockMvc.perform(post("/api/v1/addCustomer")
+        this.mockMvc.perform(post("/api/customers/v1/addCustomer")
                         .contentType(MediaType.APPLICATION_JSON).content(request))
                 .andExpect(content().json(expectedResponse));
     }
 
     @Test
     public void customerController_RequestAddCustomerWithInvalidSurname_ReturnsWrongSurnameMessage() throws Exception {
-        String expectedResponse = "{\"surname\":\"Surname not provided\"}";
+        String expectedResponse = "{\"surname\":\"Incorrect surname\"}";
         String request = "{" +
                 "    \"name\": \"Name\"," +
                 "    \"surname\": \"\"," +
@@ -61,14 +61,14 @@ class CustomerControllerTest {
                 "    \"telNumber\": \"+37016577748\"," +
                 "    \"email\": \"name@gmail.com\"" +
                 "}";
-        this.mockMvc.perform(post("/api/v1/addCustomer")
+        this.mockMvc.perform(post("/api/customers/v1/addCustomer")
                         .contentType(MediaType.APPLICATION_JSON).content(request))
                 .andExpect(content().json(expectedResponse));
     }
 
     @Test
     public void customerController_RequestAddCustomerWithInvalidDate_ReturnsWrongDateMessage() throws Exception {
-        String expectedResponse = "{\"birthDate\":\"Date format is incorrect. Must be \\\"yyyy-mm-dd\\\"\"}";
+        String expectedResponse = "{\"birthDate\":\"Birth Date is incorrect. Must be \\\"yyyy-mm-dd\\\"\"}";
         String request = "{" +
                 "    \"name\": \"Name\"," +
                 "    \"surname\": \"Surname\"," +
@@ -76,7 +76,7 @@ class CustomerControllerTest {
                 "    \"telNumber\": \"+37016577748\"," +
                 "    \"email\": \"name@gmail.com\"" +
                 "}";
-        this.mockMvc.perform(post("/api/v1/addCustomer")
+        this.mockMvc.perform(post("/api/customers/v1/addCustomer")
                 .contentType(MediaType.APPLICATION_JSON).content(request))
                 .andExpect(content().json(expectedResponse));
     }
@@ -91,7 +91,7 @@ class CustomerControllerTest {
                 "    \"telNumber\": \"1\"," +
                 "    \"email\": \"name@gmail.com\"" +
                 "}";
-        this.mockMvc.perform(post("/api/v1/addCustomer")
+        this.mockMvc.perform(post("/api/customers/v1/addCustomer")
                         .contentType(MediaType.APPLICATION_JSON).content(request))
                 .andExpect(content().json(expectedResponse));
     }
@@ -106,14 +106,14 @@ class CustomerControllerTest {
                 "    \"telNumber\": \"+37016577748\"," +
                 "    \"email\": \"namegmail.com\"" +
                 "}";
-        this.mockMvc.perform(post("/api/v1/addCustomer")
+        this.mockMvc.perform(post("/api/customers/v1/addCustomer")
                         .contentType(MediaType.APPLICATION_JSON).content(request))
                 .andExpect(content().json(expectedResponse));
     }
 
     @Test
     public void customerController_RequestListCustomers_StatusOk() throws Exception {
-        this.mockMvc.perform(get("/api/v1/listCustomers").accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+        this.mockMvc.perform(get("/api/customers/v1/listCustomers").accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
                 .andExpect(status().isOk());
     }
 }

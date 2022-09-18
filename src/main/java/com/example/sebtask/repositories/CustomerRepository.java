@@ -27,4 +27,12 @@ public class CustomerRepository implements ICustomerRepository {
     public List<Customer> listCustomers() {
         return customers;
     }
+
+    public boolean emailAlreadyExists(String email){
+        return customers.stream().filter(o -> o.getEmail().equals(email)).findFirst().isPresent();
+    }
+
+    public boolean phoneNumberAlreadyExists(String number) {
+        return customers.stream().filter(o -> o.getTelNumber().equals(number)).findFirst().isPresent();
+    }
 }

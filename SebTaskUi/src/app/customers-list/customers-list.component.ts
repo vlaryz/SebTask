@@ -19,7 +19,6 @@ export class CustomersListComponent implements OnInit {
   }
 
   openAddCustomerDialog() {
-    console.log("Aboba");
     this.dialogModel.open(AddCustomerDialogComponent,
       {
         width: '30%',

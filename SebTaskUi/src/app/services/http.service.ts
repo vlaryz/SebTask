@@ -8,7 +8,6 @@ import { Observable } from 'rxjs/internal/Observable';
 export class HttpService {
 
   private baseUrl = "http://localhost:8080";
-  //private controller = "api/customers/v1";
 
   constructor(
     private readonly httpClient: HttpClient,

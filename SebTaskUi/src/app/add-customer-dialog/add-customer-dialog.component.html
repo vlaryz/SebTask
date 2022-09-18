@@ -32,8 +32,17 @@
             <br>
             <button mat-raised-button type="submit" color="primary">Submit</button>
     </form>
-    <div *ngIf="errorMsg">
-        <div class="errorText" [innerHTML]="errorMsg"></div>
+    <div *ngIf="errorMsg.length != 0">
+        <!-- <div class="errorText" [innerHTML]="errorMsg"></div> -->
+        <ul *ngFor="let msg of errorMsg">
+            <li class="errorText">{{msg}}</li>
+        </ul>
+        <!-- <ul>
+            <li *ngFor="let msg of errorMsg">
+                <span class="msg">{{msg}}</span>
+                <br>
+            </li>
+          </ul> -->
       </div>
     </div>
     <div mat-dialog-actions>

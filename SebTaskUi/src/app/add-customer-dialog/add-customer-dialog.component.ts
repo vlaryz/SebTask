@@ -16,7 +16,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 })
 export class AddCustomerDialogComponent implements OnInit {
 
-  public errorMsg = "";
+  // public errorMsg = "";
+  public errorMsg: any[] = [];
   public customer: CustomerResponse = {
     name: '',
     surname: '',
@@ -34,16 +35,7 @@ export class AddCustomerDialogComponent implements OnInit {
   }
 
   addCustomer() {
-    this.errorMsg = "";
-    console.log("cust: " + this.customer.email);
-    // const request = {
-    //   name: "aboba",
-    //   surname: "surname",
-    //   birthDate: "birthDate",
-    //   telNumber: "+354546747",
-    //   email: "fdgd@Gmfggd.com" 
-    // } as CustomerRequest;
-
+    this.errorMsg = [];
     this.customerService.createCustomer(this.customer).subscribe(
       response => {
         this.dialogRef.close();
@@ -51,7 +43,7 @@ export class AddCustomerDialogComponent implements OnInit {
       error => {
         Object.entries(error.error).forEach((entry) => {
           const [key, value] = entry;
-          this.errorMsg += (value+"<br>");
+          this.errorMsg.push(value);
         });
       }
     )

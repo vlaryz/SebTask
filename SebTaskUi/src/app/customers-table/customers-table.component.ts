@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { AddCustomerDialogComponent } from '../add-customer-dialog/add-customer-dialog.component';
 import { CustomerResponse } from '../models/customer-response';
 import { PreviewCustomerDialogComponent } from '../preview-customer-dialog/preview-customer-dialog.component';
 import { CustomerService } from '../services/customer.service';
@@ -36,6 +37,17 @@ export class CustomersTableComponent implements OnInit {
         data: row,
         width: '50%'
       });
+  }
+
+  openAddCustomerDialog() {
+    const dialogRef = this.dialogModel.open(AddCustomerDialogComponent,
+      {
+        width: '30%',
+      });
+
+    dialogRef.afterClosed().subscribe(_ => {
+      this.initializeCustomers();
+    })
   }
 
   public doFilter = (value: string) => {

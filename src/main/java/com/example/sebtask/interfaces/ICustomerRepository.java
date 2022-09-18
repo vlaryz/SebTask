@@ -9,4 +9,8 @@ public interface ICustomerRepository {
     Customer addCustomer(Customer customer);
 
     List<Customer> listCustomers();
+
+    boolean emailAlreadyExists(String email);
+
+    boolean phoneNumberAlreadyExists(String number);
 }
