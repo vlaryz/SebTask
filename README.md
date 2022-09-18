@@ -13,7 +13,7 @@ To run Angular frontend project:
 
 1. Open Command Line and change directory to root folder of the project.
 2. Type ```cd SebTaskUi``` to open UI project root foler.
-3. Type ```ng serve``` to start Angular project.<br/>
+3. Type ```npm install``` and then ```ng serve``` to start Angular project.<br/>
 By default Angular shold run on localhost port :4200
 
 # Features
