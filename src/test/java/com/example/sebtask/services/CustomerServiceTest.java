@@ -76,18 +76,4 @@ class CustomerServiceTest {
 
         assertEquals(expectedList.size(), actual.size());
     }
-
-    @Test
-    void emailAlreadyExists_PassExistingEmail_ReturnTrue() {
-        Customer customer = new Customer("name",
-                "surname", new Date(), "+31678464764", "email@email.com");
-        CustomerRequest customerRequest = new CustomerRequest(customer);
-        CustomerResponse customerResponse = CustomerResponse.fromCustomer(customer);
-
-        when(repository.emailAlreadyExists(anyString())).thenReturn(true);
-        var actual = service.addCustomer(customerRequest);
-
-        assertNotNull(actual);
-        assertThat(customerResponse).usingRecursiveComparison().isEqualTo(actual);
-    }
 }
